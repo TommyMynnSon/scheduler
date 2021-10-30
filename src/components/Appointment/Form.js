@@ -7,6 +7,8 @@ const Form = props => {
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
+  const { interviewers, onCancel } = props;
+
   const updateStudent = (value) => {
     setStudent(value);
   };
@@ -18,7 +20,7 @@ const Form = props => {
 
   const cancel = () => {
     reset();
-    props.onCancel();
+    onCancel();
   }
 
   return (
@@ -34,7 +36,7 @@ const Form = props => {
             onChange={event => updateStudent(event.target.value)}
           />
         </form>
-        <InterviewerList interviewers={props.interviewers} value={interviewer} onChange={setInterviewer}
+        <InterviewerList interviewers={interviewers} value={interviewer} onChange={setInterviewer}
         />
       </section>
       <section className="appointment__card-right">
