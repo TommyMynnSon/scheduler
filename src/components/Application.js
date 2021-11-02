@@ -38,13 +38,33 @@ export default function Application(props) {
       });
   }, []);
 
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    setState((prev) => {
+      return { ...prev, appointments };
+    });
+  }
+
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const dailyInterviewers = getInterviewersForDay(state, state.day);
+
+  console.log(dailyAppointments);
 
   const appointmentsInSchedule = dailyAppointments.map(a => {
     const interview = getInterview(state, a.interview);
 
-    return <Appointment key={a.id} id={a.id} time={a.time} interview={interview} interviewers={dailyInterviewers} />
+    return <Appointment key={a.id} id={a.id} time={a.time} interview={interview} interviewers={dailyInterviewers} bookInterview={bookInterview} />
   });
 
   appointmentsInSchedule.push(<Appointment key="last" time="5pm" />)
