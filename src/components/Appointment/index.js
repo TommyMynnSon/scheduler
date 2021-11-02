@@ -84,7 +84,7 @@ const Appointment = props => {
       {mode === ERROR_SAVE && <Error message={"Could not book appointment."} onClose={() => back()} />}
       {mode === DELETING && <Status message={"Deleting"} />}
       {mode === ERROR_DELETE && <Error message={"Could not cancel appointment."} onClose={() => back()} />}
-      {mode === CONFIRM && <Confirm message={"Are you sure you would like to delete?"} destroy={destroy} />}
+      {mode === CONFIRM && <Confirm message={"Are you sure you would like to delete?"} destroy={destroy} onCancel={() => back(EMPTY)} />}
       {mode === SHOW && (
         <Show
           student={interview.student}
