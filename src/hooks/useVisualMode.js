@@ -18,6 +18,8 @@ export default function useVisualMode(initial) {
 
       current.push(mode);
 
+      console.log(history, mode);
+
       return current;
     });
   }
@@ -27,6 +29,8 @@ export default function useVisualMode(initial) {
       setHistory((prev) => {
         const current = [...prev];
         current.pop();
+
+        console.log(history);
 
         return current;
       });

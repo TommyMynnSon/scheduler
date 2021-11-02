@@ -6,6 +6,7 @@ import Empty from './Empty';
 import Form from './Form';
 import Status from './Status';
 import Confirm from './Confirm';
+import Error from './Error';
 
 import useVisualMode from 'hooks/useVisualMode';
 
@@ -38,7 +39,7 @@ const Appointment = props => {
         transition(SHOW);
       })
       .catch(error => {
-        transition(ERROR_SAVE);
+        transition(ERROR_SAVE, true);
         console.error(error);
       });
   }
@@ -51,15 +52,15 @@ const Appointment = props => {
     transition(CONFIRM);
   }
 
-  function onConfirm() {
-    transition(DELETING);
+  function destroy() {
+    transition(DELETING, true);
 
     cancelInterview(id)
       .then(() => {
         transition(EMPTY);
       })
       .catch(error => {
-        transition(ERROR_DELETE);
+        transition(ERROR_DELETE, true);
         console.error(error);
       });
   }
@@ -77,11 +78,13 @@ const Appointment = props => {
       {time ? <Header /> : <></>}
       {getAppointment(time)}
       {mode === EMPTY && <Empty onAdd={() => { transition(CREATE) }} />}
-      {mode === CREATE && <Form interviewers={interviewers} onCancel={() => back(EMPTY)} save={save} />}
+      {mode === CREATE && <Form interviewers={interviewers} onCancel={() => back()} save={save} />}
       {mode === EDIT && <Form student={interview.student} interviewer={interview.interviewer.id} interviewers={interviewers} onCancel={() => back(EMPTY)} save={save} />}
       {mode === SAVING && <Status message={"Saving"} />}
+      {mode === ERROR_SAVE && <Error message={"Could not book appointment."} onClose={() => back()} />}
       {mode === DELETING && <Status message={"Deleting"} />}
-      {mode === CONFIRM && <Confirm message={"Are you sure you would like to delete?"} onConfirm={onConfirm} />}
+      {mode === ERROR_DELETE && <Error message={"Could not cancel appointment."} onClose={() => back()} />}
+      {mode === CONFIRM && <Confirm message={"Are you sure you would like to delete?"} destroy={destroy} />}
       {mode === SHOW && (
         <Show
           student={interview.student}
