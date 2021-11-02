@@ -23,9 +23,13 @@ const Appointment = props => {
       interviewer
     };
 
-    bookInterview(id, interview);
-
-    transition(SHOW);
+    bookInterview(id, interview)
+      .then(() => {
+        transition(SHOW);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   const getAppointment = (time) => {
