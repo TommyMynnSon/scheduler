@@ -14,7 +14,9 @@ const InterviewerList = props => {
         name={i.name}
         avatar={i.avatar}
         selected={i.id === value}
-        setInterviewer={() => { onChange(i.id) }}
+        setInterviewer={() => {
+          onChange(i.id);
+        }}
       >
 
       </InterviewerListItem>

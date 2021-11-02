@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import InterviewerList from 'components/InterviewerList';
 import Button from 'components/Button';
@@ -42,7 +42,7 @@ const Form = props => {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button onClick={() => cancel()} danger>Cancel</Button>
-          <Button onSave={() => save(student, interviewer)} confirm>Save</Button>
+          <Button onClick={() => save(student, interviewer)} confirm>Save</Button>
         </section>
       </section>
     </main>
