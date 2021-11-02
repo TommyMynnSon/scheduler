@@ -18,6 +18,8 @@ const SAVING = "SAVING";
 const DELETING = "DELETING"
 const CONFIRM = "CONFIRM";
 const EDIT = "EDIT";
+const ERROR_SAVE = "ERROR_SAVE";
+const ERROR_DELETE = "ERROR_DELETE";
 
 const Appointment = props => {
   const { id, time, interview, interviewers, bookInterview, cancelInterview } = props;
@@ -36,6 +38,7 @@ const Appointment = props => {
         transition(SHOW);
       })
       .catch(error => {
+        transition(ERROR_SAVE);
         console.error(error);
       });
   }
@@ -56,6 +59,7 @@ const Appointment = props => {
         transition(EMPTY);
       })
       .catch(error => {
+        transition(ERROR_DELETE);
         console.error(error);
       });
   }
