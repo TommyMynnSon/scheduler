@@ -1,5 +1,4 @@
 import { useEffect, useReducer } from 'react';
-
 import axios from 'axios';
 
 const SET_DAY = "SET_DAY";
@@ -49,13 +48,6 @@ export default function useApplicationData() {
     interviewers: {}
   });
 
-  // const [state, setState] = useState({
-  //   day: "Monday",
-  //   days: [],
-  //   appointments: {},
-  //   interviewers: {}
-  // });
-
   const setDay = day => {
     dispatch({
       type: SET_DAY,
@@ -67,9 +59,15 @@ export default function useApplicationData() {
     Promise.all([
       axios.get('/api/days'),
       axios.get('/api/appointments'),
-      axios.get('/api/interviewers')
+      axios.get('/api/interviewers'),
+      new WebSocket('ws://localhost:8001')
     ])
       .then((all) => {
+        all[3].send("ping");
+        all[3].onmessage = event => {
+          console.log(event.data);
+        };
+
         dispatch({
           type: SET_APPLICATION_DATA,
           days: all[0].data,
