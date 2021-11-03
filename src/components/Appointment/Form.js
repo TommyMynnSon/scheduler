@@ -16,6 +16,8 @@ const Form = props => {
       return;
     }
 
+    setError("");
+
     save(student, interviewer);
   }
 
