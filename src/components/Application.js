@@ -27,7 +27,7 @@ export default function Application(props) {
     return <Appointment key={a.id} id={a.id} time={a.time} interview={interview} interviewers={dailyInterviewers} bookInterview={bookInterview} cancelInterview={cancelInterview} />
   });
 
-  appointmentsInSchedule.push(<Appointment key="last" time="5pm" />)
+  appointmentsInSchedule.push(<Appointment key="last" time={appointmentsInSchedule.length + "pm"} />)
 
   return (
     <main className="layout">
