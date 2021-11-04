@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Header from './Header';
 import Show from './Show';
@@ -25,6 +25,15 @@ const ERROR_DELETE = "ERROR_DELETE";
 const Appointment = props => {
   const { id, time, interview, interviewers, bookInterview, cancelInterview } = props;
   const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
+
+  useEffect(() => {
+    if (interview && mode === EMPTY) {
+      transition(SHOW);
+    }
+    if (interview === null && mode === SHOW) {
+      transition(EMPTY);
+    }
+  }, [interview, transition, mode]);
 
   function save(name, interviewer) {
     const interview = {
@@ -85,7 +94,7 @@ const Appointment = props => {
       {mode === DELETING && <Status message={"Deleting"} />}
       {mode === ERROR_DELETE && <Error message={"Could not cancel appointment."} onClose={() => back()} />}
       {mode === CONFIRM && <Confirm message={"Are you sure you would like to delete?"} destroy={destroy} onCancel={() => back(EMPTY)} />}
-      {mode === SHOW && (
+      {mode === SHOW && interview && (
         <Show
           student={interview.student}
           interviewer={interview.interviewer}

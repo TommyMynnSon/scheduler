@@ -1,4 +1,5 @@
 import { useEffect, useReducer } from 'react';
+
 import axios from 'axios';
 
 const SET_DAY = "SET_DAY";
@@ -64,8 +65,65 @@ export default function useApplicationData() {
     ])
       .then((all) => {
         all[3].send("ping");
+
         all[3].onmessage = event => {
-          console.log(event.data);
+          const data = JSON.parse(event.data);
+
+          if (data.type === SET_INTERVIEW) {
+            const id = data.id;
+            const interview = data.interview;
+            const appointments = all[1].data;
+
+            const currentDays = [...all[0].data];
+
+            let dayToUpdateSpots;
+
+            if (id >= 1 && id <= 5) {
+              dayToUpdateSpots = 0;
+            }
+
+            if (id >= 6 && id <= 10) {
+              dayToUpdateSpots = 1;
+            }
+
+            if (id >= 11 && id <= 15) {
+              dayToUpdateSpots = 2;
+            }
+
+            if (id >= 16 && id <= 20) {
+              dayToUpdateSpots = 3;
+            }
+
+            if (id >= 21 && id <= 25) {
+              dayToUpdateSpots = 4;
+            }
+
+            console.log('database', all[1].data[id].interview);
+            console.log('input', interview);
+
+            if (appointments[id].interview === null && interview) {
+              currentDays[dayToUpdateSpots].spots--;
+              appointments[id].interview = { ...interview };
+            }
+
+            if (appointments[id].interview && interview) {
+              appointments[id].interview = { ...interview };
+            }
+
+            if (interview === null) {
+              currentDays[dayToUpdateSpots].spots++;
+              appointments[id].interview = null;
+            }
+
+            console.log(currentDays[dayToUpdateSpots].spots);
+
+            dispatch({
+              type: SET_INTERVIEW,
+              currentDays,
+              id,
+              interview
+            });
+          }
         };
 
         dispatch({
@@ -74,87 +132,17 @@ export default function useApplicationData() {
           appointments: all[1].data,
           interviewers: all[2].data
         });
-      });
+      })
   }, []);
 
   function bookInterview(id, interview) {
     return axios
-      .put(`/api/appointments/${id}`, { interview })
-      .then(() => {
-        const currentDays = [...state.days];
-
-        let dayToUpdateSpots;
-
-        if (id >= 1 && id <= 5) {
-          dayToUpdateSpots = 0;
-        }
-
-        if (id >= 6 && id <= 10) {
-          dayToUpdateSpots = 1;
-        }
-
-        if (id >= 11 && id <= 15) {
-          dayToUpdateSpots = 2;
-        }
-
-        if (id >= 16 && id <= 20) {
-          dayToUpdateSpots = 3;
-        }
-
-        if (id >= 21 && id <= 25) {
-          dayToUpdateSpots = 4;
-        }
-
-        if (state.appointments[id].interview === null) {
-          currentDays[dayToUpdateSpots].spots--;
-        }
-
-        dispatch({
-          type: SET_INTERVIEW,
-          currentDays,
-          id,
-          interview
-        });
-      });
+      .put(`/api/appointments/${id}`, { interview });
   }
 
   function cancelInterview(id) {
     return axios
-      .delete(`/api/appointments/${id}`)
-      .then(() => {
-        const currentDays = [...state.days];
-
-        let dayToUpdateSpots;
-
-        if (id >= 1 && id <= 5) {
-          dayToUpdateSpots = 0;
-        }
-
-        if (id >= 6 && id <= 10) {
-          dayToUpdateSpots = 1;
-        }
-
-        if (id >= 11 && id <= 15) {
-          dayToUpdateSpots = 2;
-        }
-
-        if (id >= 16 && id <= 20) {
-          dayToUpdateSpots = 3;
-        }
-
-        if (id >= 21 && id <= 25) {
-          dayToUpdateSpots = 4;
-        }
-
-        currentDays[dayToUpdateSpots].spots++;
-
-        dispatch({
-          type: SET_INTERVIEW,
-          currentDays,
-          id,
-          interview: null
-        });
-      });
+      .delete(`/api/appointments/${id}`);
   }
 
   return { state, setDay, bookInterview, cancelInterview };
