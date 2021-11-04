@@ -1,4 +1,5 @@
 # Interview Scheduler
+Single-page React application for booking, editing, and cancelling interviews.
 
 ## Setup
 
@@ -22,12 +23,19 @@ npm test
 npm run storybook
 ```
 
-## Application
+## Demonstration
 !["Application Demo"](https://github.com/TommyMynnSon/scheduler/blob/master/docs/ezgif.com-gif-maker.gif)
 
-A demonstration of deleting, editing, and creating appointments (in order) with a persistent connection to a server via WebSocket API.
-<!-- !["1"](https://github.com/TommyMynnSon/scheduler/blob/master/docs/1.png)
-!["2"](https://github.com/TommyMynnSon/scheduler/blob/master/docs/2.png)
-!["3"](https://github.com/TommyMynnSon/scheduler/blob/master/docs/3.png)
-!["4"](https://github.com/TommyMynnSon/scheduler/blob/master/docs/4.png)
-!["5"](https://github.com/TommyMynnSon/scheduler/blob/master/docs/5.png) -->
+A demonstration of booking, editing, and cancelling interviews with a persistent connection to an API server via use of web sockets (WebSocket API).
+
+## Dependencies
+```javascript
+"dependencies": {
+  "axios": "^0.24.0",
+  "classnames": "^2.2.6",
+  "normalize.css": "^8.0.1",
+  "react": "^16.9.0",
+  "react-dom": "^16.9.0",
+  "react-scripts": "3.0.0"
+}
+```
