@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Empty = props => {
+const Empty = (props) => {
   const { onAdd } = props;
 
   return (

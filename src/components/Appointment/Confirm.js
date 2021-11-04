@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import Button from 'components/Button';
 
-const Confirm = props => {
-
+const Confirm = (props) => {
   const { message, destroy, onCancel } = props;
 
   return (

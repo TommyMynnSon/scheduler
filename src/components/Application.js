@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import DayList from "./DayList";
 import Appointment from "./Appointment";
@@ -9,7 +9,7 @@ import useApplicationData from 'hooks/useApplicationData';
 
 import "components/Application.scss";
 
-export default function Application(props) {
+const Application = () => {
   const {
     state,
     setDay,
@@ -56,4 +56,6 @@ export default function Application(props) {
       </section>
     </main>
   );
-}
+};
+
+export default Application;

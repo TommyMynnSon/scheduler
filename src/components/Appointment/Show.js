@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Show = props => {
+const Show = (props) => {
   const { student, interviewer, onEdit, onDelete } = props;
 
   return (

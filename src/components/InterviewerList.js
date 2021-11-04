@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -6,7 +6,7 @@ import InterviewerListItem from './InterviewerListItem';
 
 import 'components/InterviewerList.scss';
 
-const InterviewerList = props => {
+const InterviewerList = (props) => {
   const { interviewers, value, onChange } = props;
 
   const interviewerListItems = interviewers.map(i => {

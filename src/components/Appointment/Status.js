@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Status = props => {
+const Status = (props) => {
   const { message } = props;
 
   return (

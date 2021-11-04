@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Error = props => {
+const Error = (props) => {
   const { message, onClose } = props;
 
   return (
