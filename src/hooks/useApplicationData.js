@@ -64,8 +64,6 @@ export default function useApplicationData() {
       new WebSocket('ws://localhost:8001')
     ])
       .then((all) => {
-        all[3].send("ping");
-
         all[3].onmessage = event => {
           const data = JSON.parse(event.data);
 
@@ -74,7 +72,7 @@ export default function useApplicationData() {
             const interview = data.interview;
             const appointments = all[1].data;
 
-            const currentDays = [...all[0].data];
+            const currentDays = all[0].data;
 
             let dayToUpdateSpots;
 
@@ -98,24 +96,19 @@ export default function useApplicationData() {
               dayToUpdateSpots = 4;
             }
 
-            console.log('database', all[1].data[id].interview);
-            console.log('input', interview);
-
             if (appointments[id].interview === null && interview) {
               currentDays[dayToUpdateSpots].spots--;
-              appointments[id].interview = { ...interview };
+              appointments[id].interview = interview;
             }
 
             if (appointments[id].interview && interview) {
-              appointments[id].interview = { ...interview };
+              appointments[id].interview = interview;
             }
 
             if (interview === null) {
               currentDays[dayToUpdateSpots].spots++;
               appointments[id].interview = null;
             }
-
-            console.log(currentDays[dayToUpdateSpots].spots);
 
             dispatch({
               type: SET_INTERVIEW,

@@ -6,8 +6,6 @@ const Confirm = props => {
 
   const { message, destroy, onCancel } = props;
 
-  console.log(props);
-
   return (
     <main className="appointment__card appointment__card--confirm">
       <h1 className="text--semi-bold">{message}</h1>
