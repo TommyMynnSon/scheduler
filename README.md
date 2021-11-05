@@ -10,6 +10,9 @@ Single-page React application for booking, editing, and cancelling interviews.
 Provided for evaluators to see working updates to server as they use the application:
 - https://lhl-interview-scheduler-spa.herokuapp.com/api/appointments
 
+### Pipeline Used
+!["Pipeline Used"](https://github.com/TommyMynnSon/scheduler/blob/master/docs/pipeline.png)
+
 ## Setup for Local Use
 
 Install dependencies with `npm install`.
