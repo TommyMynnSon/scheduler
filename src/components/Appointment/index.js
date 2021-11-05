@@ -88,9 +88,7 @@ const Appointment = (props) => {
       {getAppointment(time)}
       {mode === EMPTY && <Empty onAdd={() => { transition(CREATE) }} />}
       {mode === CREATE && <Form interviewers={interviewers} onCancel={() => back()} save={save} />}
-      {mode === EDIT && interview && (
-        <Form student={interview.student} interviewer={interview.interviewer.id} interviewers={interviewers} onCancel={() => back(EMPTY)} save={save} />
-      )}
+      {mode === EDIT && <Form student={interview.student} interviewer={interview.interviewer.id} interviewers={interviewers} onCancel={() => back(EMPTY)} save={save} />}
       {mode === SAVING && <Status message={"Saving"} />}
       {mode === ERROR_SAVE && <Error message={"Could not book appointment."} onClose={() => back()} />}
       {mode === DELETING && <Status message={"Deleting"} />}
