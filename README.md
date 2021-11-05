@@ -15,7 +15,9 @@ Provided for evaluators to see working updates to server as they use the applica
 
 ## Setup for Local Use
 
-Install dependencies with `npm install`.
+- Install dependencies with `npm install`.
+- Clone https://github.com/TommyMynnSon/scheduler-api into a separate directory and follow the README.md instructions to configure and run the API server.
+- Run `npm start` (make sure the API server is running first).
 
 ## Running Webpack Development Server
 
