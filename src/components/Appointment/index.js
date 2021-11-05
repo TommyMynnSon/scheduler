@@ -27,24 +27,11 @@ const Appointment = (props) => {
   const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
 
   useEffect(() => {
-    // All of the cases below describe a situation between two users (A & B) on separate devices.
-    // Since this project utilizes web sockets to maintain a persistent connection to a
-    // api server (e.g., scheduler-api), we need a way to provide user experience that 
-    // makes sense when these two users (or more) are using the application at the same time.
-    // Note: appointment and interview are used interchangeably.
-
-    // A books an appointment while B does nothing.
     if (interview && mode === EMPTY) {
       transition(SHOW);
     }
 
-    // A cancels an appointment while B does nothing.
     if (interview === null && mode === SHOW) {
-      transition(EMPTY);
-    }
-
-    // A cancels the same appointment that B is editing.
-    if (interview === null && mode === EDIT) {
       transition(EMPTY);
     }
   }, [interview, transition, mode]);
