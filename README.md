@@ -41,6 +41,9 @@ npm run storybook
 A demonstration of booking, editing, and cancelling interviews with a persistent connection to an API server via use of web sockets (WebSocket API).
 
 ## Dependencies
+
+!["#f03c15"](https://via.placeholder.com/15/f03c15/000000?text=+) `Node.js v10.16.1`
+
 ```javascript
 "dependencies": {
   "axios": "^0.24.0",
