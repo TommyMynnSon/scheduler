@@ -9,8 +9,6 @@ Single-page React application for booking, editing, and cancelling interviews.
 ### Server (Hosted by Heroku):
 Provided for evaluators to see working updates to server as they use the application:
 - https://lhl-interview-scheduler-spa.herokuapp.com/api/appointments
-- https://lhl-interview-scheduler-spa.herokuapp.com/api/days
-- https://lhl-interview-scheduler-spa.herokuapp.com/api/interviewers
 
 ## Setup for Local Use
 
