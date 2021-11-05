@@ -65,7 +65,7 @@ export default function useApplicationData() {
       axios.get('/api/days'),
       axios.get('/api/appointments'),
       axios.get('/api/interviewers'),
-      new WebSocket('ws://localhost:8001')
+      new WebSocket(process.env.REACT_APP_WEBSOCKET_URL || 'ws://localhost:8001')
     ])
       .then((all) => {
         all[3].onmessage = event => {
