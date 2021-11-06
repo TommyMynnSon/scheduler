@@ -10,6 +10,8 @@ Single-page React application for booking, editing, and cancelling interviews.
 Provided for evaluators to see working updates to server as they use the application:
 - https://lhl-interview-scheduler-spa.herokuapp.com/api/appointments
 
+<b>Note</b>: Since the server is hosted with the free plan from Heroku, the server instance will shutdown after thirty minutes of inactivity. However, once a request is made, it will take a few seconds to start up again. Once the server is revived, it will behave as expected until it notices that it is inactive for thirty minutes.
+
 ### Pipeline Used
 !["Pipeline Used"](https://github.com/TommyMynnSon/scheduler/blob/master/docs/pipeline.png)
 
